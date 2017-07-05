@@ -3,10 +3,10 @@ PreLoadMe is a lightweight preloader for any webcontent. Powered by jQuery and C
 
 PreLoadMe displays a loading animation until the browser fetched the whole web content and will fade out the moment the page has been completely cached. Because the simplicity of PreLoadMe, it can be easily customized and adapted to your needs.
 
-You can see a live preview here: <a href='http://codepen.io/niklausgerber/pen/MKrVdQ' title='PreLoadMe Live Preview' target='_blank'>PreLoadMe Live Preview</a>
+You can see a live preview here: <a href='https://codepen.io/vonvlaho/pen/XgYOyo' title='PreLoadMe Live Preview' target='_blank'>PreLoadMe Live Preview</a>
 
 ## Implementation
-PreLoadMe is jQuery driven. You will need to implement an up to date jQuery version and the corresponding JavaScript for executing the preloader. Add the following code right before the `</body>` tag.
+PreLoadMe is jQuery driven. You will need to implement an up to date jQuery version and the corresponding JavaScript for executing the preloader.
 
     <!-- jQuery Plugin -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
@@ -14,9 +14,9 @@ PreLoadMe is jQuery driven. You will need to implement an up to date jQuery vers
     <!-- Preloader -->
     <script type="text/javascript">
         //<![CDATA[
-            $(window).on('load', function() { // makes sure the whole site is loaded 
-                $('#status').fadeOut(); // will first fade out the loading animation 
-                $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+            $(window).on('load', function() { // makes sure the whole site is loaded
+                $('#status').fadeOut(); // will first fade out the loading animation
+                $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
                 $('body').delay(350).css({'overflow':'visible'});
               })
         //]]>
@@ -24,77 +24,42 @@ PreLoadMe is jQuery driven. You will need to implement an up to date jQuery vers
 
 The CSS-Markup will help you style the preloader. Make sure to include it on your website.
 
-	body {
-		overflow: hidden;
-	}
+  #preloader {
+      display: block;
+      position: fixed;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+  		background: #C9D6FF;  /* fallback for old browsers */
+  		background: -webkit-linear-gradient(to bottom, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+  		background: linear-gradient(to bottom, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  		z-index:99; /* makes sure it stays on top */
+  }
 
-	/* Preloader */
-	#preloader {
-		position: fixed;
-		top:0;
-		left:0;
-		right:0;
-		bottom:0;
-		background-color:#fff; /* change if the mask should have another color then white */
-		z-index:99; /* makes sure it stays on top */
-	}
+  #status {
+      display: block;
+      width:40px;
+      height:40px;
+      position:absolute;
+      left:50%; /* centers the loading animation horizontally on the screen */
+      top:50%; /* centers the loading animation vertically on the screen */
+      border-radius: 50%;
+      border: 0.25rem solid rgba(255, 255, 255, 0.2);
+      border-top-color: white;
+      -webkit-animation: spin 1s infinite linear;
+      animation: spin 1s infinite linear;
+      margin:-20px 0 0 -20px; /* is width and height divided by two */
+  }
 
-	#status {
-		width:200px;
-		height:200px;
-		position:absolute;
-		left:50%; /* centers the loading animation horizontally one the screen */
-		top:50%; /* centers the loading animation vertically one the screen */
-		background-image:url(../img/status.gif); /* path to your loading animation */
-		background-repeat:no-repeat;
-		background-position:center;
-		margin:-100px 0 0 -100px; /* is width and height divided by two */
-	}
 
 Finally place the following HTML Code directly after the `<body>` tag.
 
-	<!-- Preloader -->
 	<div id="preloader">
 		<div id="status">&nbsp;</div>
 	</div>
 
 The outer DIV `preloader` will be called from the CSS file and will cover the entire website with a white DIV. The inner DIV `status` will show the loading animation. Also you should not forget to give your document a proper doctype. Otherwise the preloader might not work.
-
-### Using with AJAX requests
-If you want to show preloader during AJAX request you can use the following CSS code.
-
-	#preloader {
-		position:fixed;
-		left: 0px;
-		top: 0px;
-		width: 100%;
-		height: 100%;		
-		background-color:#fff; /* change if the mask should have another color then white */
-		z-index:99; /* makes sure it stays on top */
-	}		
-
-	#status {
-		width:200px;
-		height:200px;
-		position:absolute;
-		left:50%; /* centers the loading animation horizontally one the screen */
-		top:50%; /* centers the loading animation vertically one the screen */
-		background-image:url(../img/status.gif); /* path to your loading animation */
-		background-repeat:no-repeat;
-		background-position:center;
-		margin:-100px 0 0 -100px; /* is width and height divided by two */
-	}			
-
-Your Javascript code will look like:
-
-	$("#status").fadeIn();
-	$("#preloader").fadeIn();
-	$.get(url, data, function(){
-		$("#status").fadeOut();
-		$("#preloader").fadeOut();
-	});
-
-The source package contains all relevant files and a working demonstration.
 
 ## Credits
 Please support humans.txt (http://humanstxt.org/). It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website.

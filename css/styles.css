@@ -1,27 +1,55 @@
-﻿@charset "utf-8";
+@charset "utf-8";
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
 body {
-	overflow: hidden;
+			overflow: hidden;
+			background-image: url(../img/mikael-cho-214358.jpg);
+			background-position: center center;
+			background-repeat:  no-repeat;
+			background-attachment: fixed;
+			background-size:  cover;
+			background-color: #999;
+}
+
+/* no-js, works with modernizr */
+.no-js #preloader, .no-js #status {
+    display: none;
 }
 
 /* Preloader */
 #preloader {
-	position: fixed;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	background-color:#fff; /* change if the mask should be a color other than white */
-	z-index:99; /* makes sure it stays on top */
+    display: block;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+		background: #C9D6FF;  /* fallback for old browsers */
+		background: -webkit-linear-gradient(to bottom, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to bottom, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		z-index:99; /* makes sure it stays on top */
 }
 
 #status {
-	width:200px;
-	height:200px;
-	position:absolute;
-	left:50%; /* centers the loading animation horizontally on the screen */
-	top:50%; /* centers the loading animation vertically on the screen */
-	background-image:url(../img/status.gif); /* path to your loading animation */
-	background-repeat:no-repeat;
-	background-position:center;
-	margin:-100px 0 0 -100px; /* is width and height divided by two */
+    display: block;
+    width:40px;
+    height:40px;
+    position:absolute;
+    left:50%; /* centers the loading animation horizontally on the screen */
+    top:50%; /* centers the loading animation vertically on the screen */
+    border-radius: 50%;
+    border: 0.25rem solid rgba(255, 255, 255, 0.2);
+    border-top-color: white;
+    -webkit-animation: spin 1s infinite linear;
+    animation: spin 1s infinite linear;
+    margin:-20px 0 0 -20px; /* is width and height divided by two */
 }
