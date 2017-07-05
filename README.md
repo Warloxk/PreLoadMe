@@ -24,6 +24,7 @@ PreLoadMe is jQuery driven. You will need to implement an up to date jQuery vers
 
 The CSS-Markup will help you style the preloader. Make sure to include it on your website.
 
+```
   #preloader {
       display: block;
       position: fixed;
@@ -51,7 +52,7 @@ The CSS-Markup will help you style the preloader. Make sure to include it on you
       animation: spin 1s infinite linear;
       margin:-20px 0 0 -20px; /* is width and height divided by two */
   }
-
+```
 
 Finally place the following HTML Code directly after the `<body>` tag.
 
